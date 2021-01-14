@@ -1,7 +1,7 @@
 import { Game } from "./game.js";
 
-const game = undefined;
-
+let game = undefined;
+let clickTargets = document.getElementById("click-targets");
 function updateUI() {
     let boardholder = document.getElementById("board-holder");
     if (game === undefined) {
@@ -10,6 +10,16 @@ function updateUI() {
         boardholder.classList.remove("is-invisible");
         document.getElementById("game-name").innerHTML = game.getName();
     }
+    // game.currentPlayer
+    
+    if (game.currentPlayer === 1){
+        clickTargets.classList.remove("red");
+        clickTargets.classList.add("black");
+    } else {
+        clickTargets.classList.remove("black");
+        clickTargets.classList.add("red");
+    }
+    // if the game.currentPlayer === 1 then we'll make clicktargets have classlist.add 
 }
 
 window.addEventListener("DOMContentLoaded", event => {
@@ -35,11 +45,14 @@ window.addEventListener("DOMContentLoaded", event => {
         player2.value = "";
         newGameButton.disabled = true;
         updateUI();
+
+    
     });
 
-
-
-
+    clickTargets.addEventListener("click", event => {
+        game.playInColumn();
+        updateUI(); 
+    })
 
 });
 
