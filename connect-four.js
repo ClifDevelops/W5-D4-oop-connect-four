@@ -1,4 +1,5 @@
 import { Game } from "./game.js";
+import { Column } from "./column";
 
 let game = undefined;
 let clickTargets = document.getElementById("click-targets");
@@ -49,9 +50,10 @@ window.addEventListener("DOMContentLoaded", event => {
 
     });
 
-    clickTargets.addEventListener("click", event => {
-        game.playInColumn();
-        updateUI();
+    clickTargets.addEventListener("click", (event) => {
+     let columnNum = Number.parseInt(event.target.id.slice(-1), 10);
+      game.playInColumn(columnNum);
+      updateUI();
     })
 
 });
