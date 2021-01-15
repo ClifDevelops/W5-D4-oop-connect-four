@@ -1,8 +1,9 @@
 import { Game } from "./game.js";
-import { Column } from "./column";
+//import { Column } from "./column.js";
 
 let game = undefined;
 let clickTargets = document.getElementById("click-targets");
+
 function updateUI() {
     let boardholder = document.getElementById("board-holder");
     if (game === undefined) {
@@ -21,6 +22,25 @@ function updateUI() {
         clickTargets.classList.add("red");
     }
     // if the game.currentPlayer === 1 then we'll make clicktargets have classlist.add
+    for(let i=0; i<6; i++){ // rows
+        for(let j=0; j<7; j++){ // columns
+            let currDiv = document.getElementById(`square-${i}-${j}`);
+            let positionValue = game.getTokenAt(i,j);
+            currDiv.innerHTML = "";
+            if(positionValue === 1){
+                let innerDiv = document.createElement("div");
+                innerDiv.classList.add("token");
+                innerDiv.classList.add("black");
+                currDiv.appendChild(innerDiv);
+            }else if(positionValue === 2){
+                let innerDiv = document.createElement("div");
+                innerDiv.classList.add("token");
+                innerDiv.classList.add("red");
+                currDiv.appendChild(innerDiv);
+            }
+        }
+    }
+
 }
 
 window.addEventListener("DOMContentLoaded", event => {
@@ -51,10 +71,13 @@ window.addEventListener("DOMContentLoaded", event => {
     });
 
     clickTargets.addEventListener("click", (event) => {
-     let columnNum = Number.parseInt(event.target.id.slice(-1), 10);
-      game.playInColumn(columnNum);
-      updateUI();
-    })
+        if(event.target.id.substring(0,6) === "column"){
+            let columnNum = Number.parseInt(event.target.id.slice(-1), 10);
+            console.log(columnNum);
+            game.playInColumn(columnNum);
+            updateUI();
+        }
+    });
 
 });
 

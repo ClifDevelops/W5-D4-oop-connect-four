@@ -1,4 +1,4 @@
-import { Column } from "./column";
+import { Column } from "./column.js";
 
 export class Game{
     constructor(player1, player2){
@@ -16,8 +16,7 @@ export class Game{
     }
 
     playInColumn(index){
-        this.columns[index].add(this.currentPlayer)
-        
+        this.columns[index].add(this.currentPlayer);
         this.currentPlayer = (this.currentPlayer === 1) ? 2 : 1;
     }
     getTokenAt(rowIndex, colIndex){
