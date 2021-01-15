@@ -11,7 +11,7 @@ function updateUI() {
         document.getElementById("game-name").innerHTML = game.getName();
     }
     // game.currentPlayer
-    
+
     if (game.currentPlayer === 1){
         clickTargets.classList.remove("red");
         clickTargets.classList.add("black");
@@ -19,7 +19,7 @@ function updateUI() {
         clickTargets.classList.remove("black");
         clickTargets.classList.add("red");
     }
-    // if the game.currentPlayer === 1 then we'll make clicktargets have classlist.add 
+    // if the game.currentPlayer === 1 then we'll make clicktargets have classlist.add
 }
 
 window.addEventListener("DOMContentLoaded", event => {
@@ -46,12 +46,12 @@ window.addEventListener("DOMContentLoaded", event => {
         newGameButton.disabled = true;
         updateUI();
 
-    
+
     });
 
     clickTargets.addEventListener("click", event => {
         game.playInColumn();
-        updateUI(); 
+        updateUI();
     })
 
 });
