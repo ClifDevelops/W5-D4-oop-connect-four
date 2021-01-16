@@ -12,7 +12,12 @@
             }
         }
     }
+    
     getTokenAt(rowIndexNumber){ // CHECK ON AGAIN
         return this.tokens[rowIndexNumber]; // 1/2/null
+    }
+
+    isFull(){
+        return (this.tokens[0] === null) ? false : true; 
     }
 }
