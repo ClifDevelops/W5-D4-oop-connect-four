@@ -47,7 +47,7 @@ function updateUI() {
     for (let i = 0; i < 7; i++){
         let workingDiv = document.getElementById(`column-${i}`);
         let workingBoolean = isColumnFull(i);
-        
+
         if (workingBoolean){
             workingDiv.classList.add("full");
         } else {
@@ -88,9 +88,10 @@ window.addEventListener("DOMContentLoaded", event => {
     clickTargets.addEventListener("click", (event) => {
         if(event.target.id.substring(0,6) === "column"){
             let columnNum = Number.parseInt(event.target.id.slice(-1), 10);
-            
-          
-            game.playInColumn(columnNum);
+
+            if(!game.columns[columnNum].isFull()){
+                game.playInColumn(columnNum);
+            }
             updateUI();
         }
     });

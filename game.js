@@ -28,12 +28,12 @@ export class Game {
     this.columns.forEach((column) => {
         console.log(column.isFull());
       if (!column.isFull()) {
-          
+
         return;
       }
     });
-    // this.winnerNumber = 3;
-    
+    this.winnerNumber = 3;
+
   }
   getTokenAt(rowIndex, colIndex) {
     let currentColObj = this.columns[colIndex];
